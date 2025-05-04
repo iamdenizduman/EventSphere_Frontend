@@ -1,17 +1,14 @@
-import { Layout } from 'antd';
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Layout } from 'antd';
 import CustomHeader from '../components/Headers/CustomHeader';
 import CustomContent from '../components/Contents/CustomContent';
 import CustomFooter from '../components/Footers/CustomFooter';
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
     <Layout>
       <CustomHeader />
-      <CustomContent>
-        <Outlet />
-      </CustomContent>
+      <CustomContent>{children}</CustomContent>
       <CustomFooter />
     </Layout>
   );

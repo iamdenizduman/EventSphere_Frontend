@@ -1,17 +1,28 @@
 import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext.jsx';
 
 export default function CustomHeader() {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const { user } = useAuth();
 
   const menuItems = [
     { name: 'Etkinlikler', href: '#' },
     { name: 'Biletlerim', href: '#' },
     { name: 'İletişim', href: '#' },
-    { name: 'Üye Ol', href: '#' },
-    { name: 'Giriş Yap', href: '#' },
   ];
+
+  if (user != null) {
+    menuItems.push({
+      name: user.name,
+    });
+  } else {
+    menuItems.push(
+      { name: 'Üye Ol', href: '#' },
+      { name: 'Giriş Yap', href: '#' }
+    );
+  }
 
   return (
     <nav className='bg-white shadow-md w-full py-3 mb-5'>
