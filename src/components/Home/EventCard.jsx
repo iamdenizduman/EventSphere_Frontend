@@ -1,11 +1,19 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const EventCard = ({ event }) => {
   const startDate = new Date(event.startDate)?.toLocaleDateString('tr-TR');
   const endDate = new Date(event.endDate)?.toLocaleDateString('tr-TR');
+  const navigate = useNavigate();
+  const handleClick = (recordId) => {
+    console.log(recordId);
+    navigate(`/eventDetail/${recordId}`);
+  };
 
   return (
-    <div className='text-center bg-white shadow-md rounded-2xl overflow-hidden p-4 space-y-4 border border-gray-100 transition-all duration-400 hover:shadow-md hover:scale-105 cursor-pointer'>
+    <div
+      onClick={() => handleClick(event.recordId)}
+      className='text-center bg-white shadow-md rounded-2xl overflow-hidden p-4 space-y-4 border border-gray-100 transition-all duration-400 hover:shadow-md hover:scale-105 cursor-pointer'
+    >
       <div className='flex justify-center'>
         <img
           src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRABtd3_m34c-WfPpNLzeFwuldtAahqRk1gwA&s'
