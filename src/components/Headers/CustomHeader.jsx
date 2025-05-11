@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export default function CustomHeader() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,6 +18,9 @@ export default function CustomHeader() {
     menuItems.push({
       name: user.name,
     });
+    menuItems.push({
+      name: 'Sepetim',
+    });
   } else {
     menuItems.push(
       { name: 'Üye Ol', href: '#' },
@@ -24,11 +28,20 @@ export default function CustomHeader() {
     );
   }
 
+  const navigate = useNavigate();
+
+  const handleClickNavigate = () => {
+    navigate('/');
+  };
+
   return (
     <nav className='bg-white shadow-md w-full py-3 mb-5'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between h-16 items-center'>
-          <div className='text-2xl font-bold'>
+          <div
+            onClick={handleClickNavigate}
+            className='text-2xl font-bold cursor-pointer'
+          >
             <img
               src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRABtd3_m34c-WfPpNLzeFwuldtAahqRk1gwA&s'
               alt=''
